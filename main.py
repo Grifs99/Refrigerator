@@ -3,7 +3,6 @@ import asyncio
 import random
 import psutil
 import discord
-import sys
 from discord.ext import commands
 import os
 import json
@@ -112,14 +111,23 @@ async def process_always(message):
         async with aiohttp.get('https://api.twitch.tv/kraken/streams/{}'.format(channel)) as resp:
             assert resp.status == 200
             resp_parsed = await resp.json()
-            if resp_parsed['stream'] or not resp_parsed['error']:
+            if resp_parsed['stream']:
                 resp_msg = '**{}** - **{}** is playing **{}** and **{}** are watching it!'.format(
                     resp_parsed['stream']['channel']['display_name'],
                     resp_parsed['stream']['channel']['status'],
                     resp_parsed['stream']['channel']['game'],
                     resp_parsed['stream']['viewers']
                 )
-                await client.send_message(message.channel, '{}'.format(resp_msg))
+                await client.send_message(message.channel, str(resp_msg))
+            elif not resp_parsed['stream']:
+                await client.send_message(message.channel, '**{}** channel at the moment is offline'.format(channel))
+
+@client.command(name='info',
+                help='Returns information about Bot')
+async def command_info():
+    _info_msg = 'I was made by <@124923197610131462>\n'
+    _info_msg += 'My code could be find at <https://github.com/Grifs99/Refrigerator>'
+    await client.say(_info_msg)
 
 @client.event
 async def on_message(message):

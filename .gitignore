@@ -56,13 +56,12 @@ coverage.xml
 docs/_build/
 
 # PyBuilder
-/settings-stable.json
-/refrigerator
+refrigerator.sh
 target/
 
 # Costume stuff
 Refrigerator/*
 .idea/*
 settings.json
-settings-stable.
+settings-stable.json
 test.py

@@ -1,3 +1,4 @@
 -e git+https://github.com/Rapptz/discord.py@async#egg=discord.py
 psutil==3.4.1
 aiohttp==0.19.0
+isodate==0.5.4

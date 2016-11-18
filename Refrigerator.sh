@@ -4,9 +4,9 @@
 # description: myapp daemon
 # processname: myapp
 
-DAEMON_PATH="/home/grifs99/Refrigerator/"
+DAEMON_PATH="/home/grifs99/refrigerator/"
 
-DAEMON="source /home/grifs99/Refrigerator/virtualenv/bin/activate && python /home/grifs99/Refrigerator/main.py"
+DAEMON="source /home/grifs99/virtualenv/refrigerator/bin/activate && python /home/grifs99/refrigerator/bot.py"
 DAEMONOPTS=""
 
 NAME=refrigerator

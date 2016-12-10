@@ -69,7 +69,7 @@ async def process_always( message, settings, client):
             author = snippet['channelTitle']
             upload_time = time.strptime(snippet['publishedAt'], "%Y-%m-%dT%H:%M:%S.000Z")
             await client.send_message(message.channel,
-                                           '**{}** – length **{}** – likes **{}**, dislikes **{}** (**{:.1f}%**) – **{}** views – **{}** on **{}**'.format(
+                                           '**{}** – length **{}** – likes **{}**, dislikes **{}** (**{:.1f}%**) – **{}** views – **{}** on **{}** \n\nPosted by **{}**'.format(
                                                title,
                                                display_time(length.total_seconds(), 4),
                                                likes,
@@ -77,7 +77,8 @@ async def process_always( message, settings, client):
                                                total_percent,
                                                views,
                                                author,
-                                               time.strftime("%Y.%m.%d", upload_time)
+                                               time.strftime("%Y.%m.%d", upload_time),
+                                               message.author.name
                                            ))
             channel = discord.utils.get(client.get_all_channels(), name='youtubestuff')
             if message.channel.id != channel.id:
